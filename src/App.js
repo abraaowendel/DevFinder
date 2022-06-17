@@ -14,10 +14,10 @@ function App() {
         setJson(json)
       }
       else{
-         alert('Nao')
+        throw ''
       }
     } catch (error) {
-        alert(error)
+        setJson('')
     }
   }
 

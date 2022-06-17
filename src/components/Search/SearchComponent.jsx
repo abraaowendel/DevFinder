@@ -7,7 +7,7 @@ import CardComponent from "../User/CardComponent"
 import App from "../../App"
 
 export const BoxContainer = styled.div `
-    max-width: 600px;
+    max-width: 700px;
     margin: auto;
     display: flex;
     background-color: #1F2A48;
@@ -46,6 +46,7 @@ const SearchComponent = ({onAdd}) =>{
 
     useEffect(()=>{
         handleClickSearch();
+        setUser('')
     },[])
 
     const handleInput = (e) =>{
@@ -55,6 +56,10 @@ const SearchComponent = ({onAdd}) =>{
     const handleClickSearch = async () =>{
         if(user){
             onAdd(user);
+        }
+        else{
+            onAdd('')
+            alert('Digite algo.')
         }       
     }
 
@@ -62,7 +67,7 @@ const SearchComponent = ({onAdd}) =>{
         <BoxContainer>
             <img src={search} alt="search" />
             <input type="text" onChange={handleInput} placeholder="Procure um usuário do Github"/>
-            <button onClick={handleClickSearch}>Search</button>
+            <button onClick={handleClickSearch}>Search</button> 
         </BoxContainer>
     )
 }
