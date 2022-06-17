@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components";
 
 export const Header = styled.header `
@@ -10,7 +10,6 @@ export const Header = styled.header `
 export const ThemeContainer = styled.div `
     display: flex;
     align-items: center;
-
     span{
         font-size: 1.2em;
         font-family:Arial, Helvetica, sans-serif;
