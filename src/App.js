@@ -14,6 +14,7 @@ function App() {
         setJson(json)
       }
       else{
+        // eslint-disable-next-line no-throw-literal
         throw ''
       }
     } catch (error) {

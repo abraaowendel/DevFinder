@@ -30,16 +30,11 @@ export const LeftSide = styled.div `
         height: 296px;
         img{
             position: absolute;
-
             width: 100%;
             left: 0;
-            top: ;
             border-radius: 50%;
         }
     }
- 
-   
-   
 `
 export const RightSide = styled.div `
     display: flex;

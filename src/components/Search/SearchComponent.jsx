@@ -2,9 +2,6 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import search from "../../assets/icons/icon-search.svg"
-import Api from "../../Api"
-import CardComponent from "../User/CardComponent"
-import App from "../../App"
 
 export const BoxContainer = styled.div `
     max-width: 700px;
@@ -28,6 +25,7 @@ export const BoxContainer = styled.div `
     }
     button{
         padding: 0px 20px;
+        margin-right: 5px;
         border-radius: 10px;
         cursor: pointer;
         background-color: #0078FE;
@@ -53,7 +51,7 @@ const SearchComponent = ({onAdd}) =>{
         return setUser(e.target.value)
     }
 
-    const handleClickSearch = async () =>{
+    const handleClickSearch =  () =>{
         if(user){
             onAdd(user);
         }
