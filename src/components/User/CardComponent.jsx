@@ -1,113 +1,223 @@
 import styled from "styled-components";
-import { useState } from "react";
 import Company from "../../assets/icons/icon-company.svg";
 import Twitter from "../../assets/icons/icon-twitter.svg";
 import WebSite from "../../assets/icons/icon-website.svg";
 import Location from "../../assets/icons/icon-location.svg";
 import React from "react";
 
+export const Main = styled.main `
+    padding: 0 20px;
+`
 export const Container = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 380px;
+    display: grid;
+    grid-template-areas: "avatar info info info"
+    "avatar bio bio bio"
+    "avatar repo repo repo"
+    "avatar social social social";
     max-width: 700px;
-    margin: auto;
-    padding: 30px;
     margin: 20px auto;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    background-color: #1F2A48;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #fff;
+    padding: 45px 40px;
+    background-color: #2b3b66;
+    border-radius: 20px;
+    overflow-x: hidden;
+    min-height: 420px;
+    @media screen and (max-width: 768px){
+        grid-template-areas: "avatar info"
+        "bio bio"
+        "repo repo"
+        "social social";
+    }
+    @media screen and (max-width: 520px){
+        padding: 25px;
+    }
+    @media screen and (max-width: 380px){
+        padding: 30px 0px 20px;
+        background-color: transparent;
+        grid-template-areas: "avatar"
+        "info "
+        "bio"
+        "repo "
+        "social";
+    }
 `
 
-export const LeftSide = styled.div `
-    div{
-        position: relative;
-        margin-right: 30px;
-        width: 117px;
-        height: 296px;
-        img{
-            position: absolute;
-            width: 100%;
-            left: 0;
-            border-radius: 50%;
-        }
+export const Avatar  = styled.div`
+    grid-area: avatar;
+    margin-right: 30px;
+    width: 110px;
+    img{
+        width: 100%;
+        border-radius: 50%;
     }
+    @media screen and (max-width: 520px){
+        width: 90px;
+    }
+    @media screen and (max-width: 380px){
+        margin: 0 auto 20px;
+    }
+        
 `
-export const RightSide = styled.div `
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-`
+
 export const Info = styled.div `
-    display: flex;
-    justify-content: space-between;
     color: #fff;
+    grid-area: info;
+    display: grid;
+    align-items: center;
+    grid-template-areas: "nick joined"
+                        "link link"
+                        ;
+    min-width: 400px;
     h2{
-        font-size: 24px;
+        grid-area: nick;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 22px;
     }
+    h5{
+        grid-area: joined;
+        text-align: end;
+        color: #89919E;
+    }
+   
     a{
-        display: block;
-        color: #0078FE;
-        font-size: 1em;
-        letter-spacing: 2px;
+        margin: 2px 0 10px;
+        grid: link;
+        color: #0664df;
         text-decoration: none;
-        margin: 10px 0 15px;
-        :hover{
+        letter-spacing: 1px;
+        &:hover{
             text-decoration: underline;
         }
     }
-    p{
-        margin-bottom: 20px;
-        color: #cece;
+    @media screen and (max-width: 768px){
+        grid-template-areas: "nick "
+                        "link"
+                        "joined"
+                      ;
+        min-width: 250px;
+ 
+        h5{
+            text-align: start;
+        }
     }
-    h5{
-        font-weight: 400;
+    @media screen and (max-width: 480px){
+        min-width: 100px;
+    }
+    @media screen and (max-width: 400px){
+        min-width: 0;
+        h2{
+            font-size: 18px;
+            text-align: center;
+        }
+        h5{
+            text-align: center;
+        }
+        a{
+            text-align: center;
+            font-size: 14px;
+        }
+    }
+`
+export const Desc = styled.div `
+    grid-area: bio;
+
+     p{
+        color: #89919E;
+    }
+    @media screen and (max-width: 768px){
+      margin-top: 30px;
+      p{
+        color: #fff;
+      }
+    }
+    @media screen and (max-width: 400px){
+        margin-top: 15px;
+        p{
+            font-size: 0.9em;
+        }
     }
 `
 export const Repositories = styled.div `
+    grid-area: repo;
     display: flex;
     justify-content: space-between;
-    background-color: #141C2F;
-    padding: 15px 20px;
+    padding:12px 20px;
     border-radius: 10px;
+    background-color: #1F2A48;
     text-align: center;
-    margin-bottom: 20px;
+    margin: 30px 0;
     h4{
         color: #cece;
-        font-weight: 100;
-        margin: 10px 0;
+        font-weight: 400;
+        font-size: 0.9em;
     }
     p{
         color: #fff;
-        font-weight: 600;
-        font-size: 1.1em;
+        font-size: 1.3em;
+        font-weight: 700;
+    }
+    @media screen and (max-width: 380px){
+        padding:12px 10px;
+        justify-content: space-between;
+        border: 1px solid #fff;
+        h4{
+       
+            font-size: 0.75em;
+        }
+        p{
+            font-size: 1em;
+        }
     }
 `
+
 export const Social = styled.div `
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-`
-export const SocialSides = styled.div `
-    display: flex;
-    flex-direction: column;
-    div{
-        display: flex;
-        align-items: center;
-        margin: 5px 0;
-    }
-     p{
-        letter-spacing: 1px;
+       grid-area: social;
+       display: flex;
+       flex-direction: column;  
+       div{
+            flex: 1;
+            display: flex;   
+            align-items: center;
+            margin-bottom: 3px;
+       }
+       p{
         color: #fff;
-        font-size: 0.85em;
-     }
-     span{
-        min-width: 20px;
-        margin-right: 10px;
-     }
+        font-size: 0.875em;
+        line-height: 30px;
+       }
+       span{
+         min-width: 20px;
+         margin-right: 5px;
+       }
+       @media screen and (max-width: 520px){
+            div{
+                justify-content: center;
+                align-items: flex-start;
+            }   
+            p{
+                font-size: 0.9em;
+            }       
+        }
+`
+const SocialSides = styled.div `
+    @media screen and (max-width: 520px){
+        display: flex;
+        flex-direction: column;    
+        div{
+            align-items: end;
+            margin-bottom: 15px;
+        } 
+    }
+`
+
+
+export const HasErro = styled.div`
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    color: #fff;
 `
 
 const CardComponent = ({data}) =>{
@@ -127,71 +237,67 @@ const CardComponent = ({data}) =>{
     } 
 
     return(
-        <Container>
-          {data && 
-            <>
-            <LeftSide>
-                <div>
-                    <img src={data.avatar_url} alt="" />
-                </div>
-            </LeftSide>
-            <RightSide>
-                    <Info>
+       <Main>
+            {data && 
+            
+            <Container>
+                <Avatar>
+                     <img src={data.avatar_url} alt="" />
+                </Avatar>
+                <Info>    
+                    <h2>{data.name}</h2>
+                    <h5>{formatDate(data.created_at)}</h5>
+                    <a href={data.html_url}>@{data.login}</a>
+                </Info>
+                <Desc>
+                     <p>{data.bio?data.bio:'Esse perfil não tem bio'}</p>
+                </Desc>
+                <Repositories>
+                    <div>
+                        <h4>Repositórios</h4>
+                        <p>{data.public_repos}</p>
+                    </div>      
+                    <div>
+                        <h4>Seguidores</h4>
+                        <p>{data.followers} </p>
+                    </div>
+                    <div>
+                        <h4>Seguindo</h4>
+                        <p>{data.following} </p>
+                    </div>
+                </Repositories>
+                <Social>
+                    <SocialSides>
                         <div>
-                            <h2>{data.name}</h2>
-                            <a href={data.html_url}>@{data.login}</a>
-                            <p>{data.bio?data.bio:'Esse perfil não tem bio'}</p>
+                            <span><img src={Location} alt="" /></span>
+                            <p>{data.location?data.location:'Não disponível'}</p>  
                         </div>
                         <div>
-                            <h5>{formatDate(data.created_at)}</h5>
-                        </div>
-                    </Info>
-                    <Repositories>
+                            <span><img src={WebSite} alt="" /></span> 
+                            <p>{data.blog?data.blog:'Não disponível'}</p>  
+                        </div> 
+                    </SocialSides>
+                    <SocialSides>
                         <div>
-                            <h4>Repositórios</h4>
-                            <p>{data.public_repos}</p>
-                        </div>      
-                        <div>
-                            <h4>Seguidores</h4>
-                            <p>{data.followers}</p>
+                            <span><img src={Twitter} alt="" /></span>
+                            <p>{data.twitter_username?data.twitter_username:'Não disponível'}</p>  
                         </div>
                         <div>
-                            <h4>Seguindo</h4>
-                            <p>{data.following}</p>
+                            <span><img src={Company} alt=""/></span>
+                            <p>{data.company?data.company:'Não disponível'}</p>  
                         </div>
-                    </Repositories>
-                    <Social>
-                        <SocialSides>
-                            <div>
-                                <span><img src={Location} alt="" /></span>
-                                <p>{data.location?data.location:'Não disponível'}</p>  
-                            </div>
-                            <div>
-                                <span><img src={WebSite} alt="" /></span> 
-                                <p>{data.blog?data.blog:'Não disponível'}</p>  
-                            </div> 
-                        </SocialSides>
-                        <SocialSides>
-                            <div>
-                                <span><img src={Twitter} alt="" /></span>
-                                <p>{data.twitter_username?data.twitter_username:'Não disponível'}</p>  
-                            </div>
-                            <div>
-                                <span><img src={Company} alt=""/></span>
-                                <p>{data.company?data.company:'Não disponível'}</p>  
-                            </div>
-                        </SocialSides>
-                    </Social>   
-            </RightSide>
-        </>
+                    </SocialSides>
+                </Social> 
+        </Container>
         }
+       
 
         {!data && 
-            <div>
+            <HasErro>
                 <h2>Usúario não encontrado.</h2>
-            </div>
+            </HasErro>
         }
-        </Container>
+      </Main>
     )
 }
 

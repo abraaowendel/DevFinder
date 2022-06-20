@@ -7,11 +7,10 @@ export const BoxContainer = styled.div `
     max-width: 700px;
     margin: auto;
     display: flex;
-    background-color: #1F2A48;
+    background-color: #2b3b66 ;
     border-radius: 15px;
     padding: 10px;
     input{
-        padding: 10px;
         background-color: transparent;
         border: 0;
         width: 100%;
@@ -24,19 +23,46 @@ export const BoxContainer = styled.div `
         cursor: pointer;
     }
     button{
-        padding: 0px 20px;
+        display: block;
         margin-right: 5px;
-        border-radius: 10px;
+        border-radius: 5px;
         cursor: pointer;
         background-color: #0078FE;
-        border: 1px solid transparent;
         color: #FFF;
-        font-weight: 600;
-        font-size: 0.9em;;
-        transition: 0.2s all ease-in;
-        :hover{
-            background-color: #b8c2dd;
+        padding: 0 15px;
+        border: 0;
+        transition: 0.4s all ease-in;
+        ::before{
+            content: "Procurar";
+            font-size: 1.2em;
         }
+        :hover{
+            background-color: #045dc4;
+        }
+    }
+    @media screen and (max-width: 768px){
+         max-width: 600px;
+         margin: auto 20px;
+        img{
+            width: 40px;
+        }
+         input::placeholder{
+            font-size: 16px;
+         }
+         button{
+            font-size: 12px;
+            padding: 0 15px;
+         }
+    }
+    @media screen and (max-width: 400px){
+        input{
+            font-size: 15px;
+        }
+        button{
+            font-size: 10px;
+            padding: 0 10px;
+            margin-right: 0;
+         }
     }
 `
 const SearchComponent = ({onAdd}) =>{
@@ -45,6 +71,7 @@ const SearchComponent = ({onAdd}) =>{
     useEffect(()=>{
         handleClickSearch();
         setUser('')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     const handleInput = (e) =>{
@@ -63,9 +90,9 @@ const SearchComponent = ({onAdd}) =>{
 
     return(
         <BoxContainer>
-            <img src={search} alt="search" />
-            <input type="text" onChange={handleInput} placeholder="Procure um usuário do Github"/>
-            <button onClick={handleClickSearch}>Search</button> 
+            <img src={search} alt="procurar" />
+            <input type="text" onChange={handleInput} placeholder="Digite um usuário"/>
+            <button onClick={handleClickSearch}></button> 
         </BoxContainer>
     )
 }
