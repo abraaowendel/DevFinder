@@ -1,4 +1,4 @@
-# <h1 align="center">
+ <h1 align="center">
 
 <br>devFinder
 
@@ -14,9 +14,9 @@
 
 <h4 align="center"><a href="https://dev-finder-three.vercel.app/" target="_blank">Clique para visitar o projeto</a></h4>
 
-## ☕ Usando <devFinder> na sua máquina:
+## ☕ Usando devFinder na sua máquina:
 
-Para usar o <devFinder>, siga estas etapas:
+Para usar o devFinder, siga estas etapas:
 
 # Clone este repositório
 
